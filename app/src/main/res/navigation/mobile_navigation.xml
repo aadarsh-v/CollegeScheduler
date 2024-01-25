@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/nav_courses"
-        android:name="com.example.collegescheduler.ui.home.HomeFragment"
+        android:name="com.example.collegescheduler.ui.courses.CoursesFragment"
         android:label="@string/menu_courses"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_courses" />
 
     <fragment
         android:id="@+id/nav_assignments"
-        android:name="com.example.collegescheduler.ui.gallery.GalleryFragment"
+        android:name="com.example.collegescheduler.ui.assignments.AssignmentsFragment"
         android:label="@string/menu_assignments"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_assignments" />
 
     <fragment
         android:id="@+id/nav_exams"
-        android:name="com.example.collegescheduler.ui.slideshow.SlideshowFragment"
+        android:name="com.example.collegescheduler.ui.exams.ExamsFragment"
         android:label="@string/menu_exams"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_exams" />
 
     <fragment
         android:id="@+id/nav_todo"
-        android:name="com.example.collegescheduler.ui.slideshow.SlideshowFragment"
+        android:name="com.example.collegescheduler.ui.todo.TodoFragment"
         android:label="@string/menu_todo"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_exams" />
 </navigation>

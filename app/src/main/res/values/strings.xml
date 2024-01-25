@@ -11,4 +11,8 @@
     <string name="menu_assignments">Assignments</string>
     <string name="menu_exams">Exams</string>
     <string name="menu_todo">To-Do</string>
+    <string name="create_assignment">New</string>
+    <string name="create_course">New</string>
+    <string name="create_exam">New</string>
+    <string name="create_todo">New</string>
 </resources>
