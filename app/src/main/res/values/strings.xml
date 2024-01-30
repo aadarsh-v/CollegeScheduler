@@ -13,6 +13,6 @@
     <string name="menu_todo">To-Do</string>
     <string name="create_assignment">New</string>
     <string name="create_course">New</string>
-    <string name="create_exam">New</string>
-    <string name="create_todo">New</string>
+    <string name="create_exam">Add</string>
+    <string name="create_todo">Add</string>
 </resources>
