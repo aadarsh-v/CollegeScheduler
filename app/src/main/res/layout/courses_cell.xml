@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/teal_700">
+
+    <TextView
+        android:id="@+id/courseName"
+        android:layout_width="125dip"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:gravity="center_vertical"
+        android:text="course :)"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/instructorName"
+        android:layout_width="125dip"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/courseName"
+        android:gravity="center_vertical"
+        android:text="test"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/courseTime"
+        android:layout_width="60dip"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_toEndOf="@+id/instructorName"
+        android:gravity="center_vertical"
+        android:text="11:00 - 12:15"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</RelativeLayout>
