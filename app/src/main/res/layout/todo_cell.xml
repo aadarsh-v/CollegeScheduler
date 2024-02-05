@@ -13,7 +13,7 @@
         android:layout_marginStart="20dp"
         android:layout_toEndOf="@+id/checkBox"
         android:gravity="center_vertical"
-        android:text="Todo"
+        android:text="@string/todo"
         android:textColor="@color/white"
         android:textSize="20sp" />
 
@@ -33,7 +33,7 @@
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/todoName"
         android:gravity="center_vertical"
-        android:text="Due date"
+        android:text="@string/due_date"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:layout_marginStart="20dp"

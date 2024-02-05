@@ -28,10 +28,10 @@ public class ExamsFragment extends Fragment {
         examsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
+
 }

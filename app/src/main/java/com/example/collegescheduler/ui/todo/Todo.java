@@ -1,7 +1,7 @@
 package com.example.collegescheduler.ui.todo;
 
-import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Todo {

@@ -1,16 +1,16 @@
 package com.example.collegescheduler.ui.assignments;
 
+import static com.example.collegescheduler.ui.todo.TodoFragment.items;
+
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.collegescheduler.R;
-
-import org.w3c.dom.Text;
 
 public class AssignmentHolder extends RecyclerView.ViewHolder {
     CheckBox box;
@@ -22,6 +22,15 @@ public class AssignmentHolder extends RecyclerView.ViewHolder {
         name = itemView.findViewById(R.id.assignmentName);
         course = itemView.findViewById(R.id.courseName);
         date = itemView.findViewById(R.id.dueDate);
+
+        box.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                items.remove(items.get(getBindingAdapterPosition()));
+                Toast.makeText(v.getContext(),"Assignment will be deleted after refresh!", Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
     }
 
     public CheckBox getCheckBox() { return box; }

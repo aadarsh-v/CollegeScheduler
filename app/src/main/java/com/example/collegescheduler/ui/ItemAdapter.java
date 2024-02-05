@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.collegescheduler.R;
 import com.example.collegescheduler.ui.assignments.Assignment;
 import com.example.collegescheduler.ui.assignments.AssignmentHolder;
-import com.example.collegescheduler.ui.courses.Course;
 import com.example.collegescheduler.ui.exams.Exam;
 import com.example.collegescheduler.ui.exams.ExamHolder;
 import com.example.collegescheduler.ui.todo.Todo;
@@ -20,7 +19,6 @@ import com.example.collegescheduler.ui.todo.TodoHolder;
 import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
 
     Context context;
     List<Object> items;
@@ -135,4 +133,5 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             vh.getTask().setText(todo.getTask());
         }
     }
+
 }
