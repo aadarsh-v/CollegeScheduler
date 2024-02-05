@@ -1,9 +1,7 @@
 package com.example.collegescheduler.ui.exams;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Exam {
@@ -30,7 +28,7 @@ public class Exam {
     public String getCourse() { return this.course; }
     // public Calendar getCalendar() { return this.calendar; }
     public String getReadableDate() {
-        examFormat = new SimpleDateFormat("dd/MM, YYYY");
+        examFormat = new SimpleDateFormat("dd/MM, yyyy");
         String dateTime = examFormat.format(this.calendar.getTime()).toString();
         return dateTime;
     }

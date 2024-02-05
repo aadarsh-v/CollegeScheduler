@@ -13,13 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.collegescheduler.R;
 import com.example.collegescheduler.databinding.FragmentTodoBinding;
-import com.example.collegescheduler.ui.Item;
 import com.example.collegescheduler.ui.ItemAdapter;
 import com.example.collegescheduler.ui.assignments.Assignment;
 import com.example.collegescheduler.ui.exams.Exam;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TodoFragment extends Fragment {
 

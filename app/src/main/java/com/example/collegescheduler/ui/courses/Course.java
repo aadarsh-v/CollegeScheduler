@@ -1,7 +1,6 @@
 package com.example.collegescheduler.ui.courses;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Course {
     private String name;
