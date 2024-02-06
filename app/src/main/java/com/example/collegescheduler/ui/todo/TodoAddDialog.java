@@ -10,36 +10,35 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.Fragment;
 
 import com.example.collegescheduler.R;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
-public class AddButtonDialog extends AppCompatDialogFragment {
+public class TodoAddDialog extends AppCompatDialogFragment {
     private EditText task;
-    private Calendar date;
+    private Fragment targetFragment;
 
+    // 1. Defines the listener interface with a method passing back data result.
+    public interface ButtonDialogListener {
+        public void onFinishEditDialog(String inputText);
+    }
 
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.addbutton_onclick_menu, null);
+        View view = inflater.inflate(R.layout.todo_add, null);
         task = view.findViewById(R.id.taskInputDialog);
         EditText year = view.findViewById(R.id.yearInput);
         EditText month = view.findViewById(R.id.monthInput);
         EditText day = view.findViewById(R.id.dayInput);
-        date = new GregorianCalendar();
 
         builder.setView(view).setTitle("Add Task").setNegativeButton("Back",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                (dialog, which) -> {
 
-                    }
                 }).setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -47,13 +46,15 @@ public class AddButtonDialog extends AppCompatDialogFragment {
                         Integer.parseInt(year.getText().toString()),
                         Integer.parseInt(month.getText().toString()),
                         Integer.parseInt(day.getText().toString())
-
                 ));
-
+                ButtonDialogListener listener = (ButtonDialogListener) targetFragment;
+                listener.onFinishEditDialog("test");
             }
         });
         return builder.create();
+    }
 
-
+    public void setTargetFragment(Fragment targetFragment) {
+        this.targetFragment = targetFragment;
     }
 }

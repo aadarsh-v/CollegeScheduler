@@ -1,5 +1,6 @@
 package com.example.collegescheduler.ui.todo;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,16 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.collegescheduler.R;
 import com.example.collegescheduler.databinding.FragmentTodoBinding;
 import com.example.collegescheduler.ui.ItemAdapter;
-import com.example.collegescheduler.ui.assignments.Assignment;
-import com.example.collegescheduler.ui.exams.Exam;
 
 import java.util.ArrayList;
 
-public class TodoFragment extends Fragment {
+public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialogListener {
 
     private FragmentTodoBinding binding;
+    public Context context = getActivity();
     public static ArrayList<Object> items = new ArrayList<Object>();
-    public ItemAdapter layoutAdapter = new ItemAdapter(getContext(), items);
+    public ItemAdapter layoutAdapter;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         TodoViewModel todoViewModel =
@@ -36,10 +36,7 @@ public class TodoFragment extends Fragment {
         RecyclerView rV = root.findViewById(R.id.recycleView);
 
         rV.setLayoutManager(new LinearLayoutManager(rV.getContext()));
-        rV.setAdapter( layoutAdapter);
-        items.add(new Todo("sadf",2023, 15, 11));
-        items.add(new Assignment("Assignment 2", "MATH 4803", 2023, 03, 07));
-        items.add(new Exam("Test 1", "MATH 4108", "Skiles 169", 2023, 02, 16, 11, 30));
+        rV.setAdapter(layoutAdapter);
         Button addButtonToDoFrag = (Button) root.findViewById(R.id.addButtonToDo);
         addButtonToDoFrag.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +56,8 @@ public class TodoFragment extends Fragment {
     }
 
     public void openDialog() {
-        AddButtonDialog addButtonDia = new AddButtonDialog();
+        TodoAddDialog addButtonDia = new TodoAddDialog();
+        addButtonDia.setTargetFragment(TodoFragment.this);
         addButtonDia.show(getParentFragmentManager(), "Add New Task Dialog");
     }
 
@@ -70,4 +68,20 @@ public class TodoFragment extends Fragment {
         binding = null;
     }
 
+//    @Override
+//    public void onViewCreated(View view, Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        layoutAdapter = new ItemAdapter(getContext().getApplicationContext(), items);
+//    }
+
+    @Override
+    public void onCreate(Bundle savedBundleInstance) {
+        super.onCreate(savedBundleInstance);
+        layoutAdapter = new ItemAdapter(getContext(), getActivity(), items);
+    }
+
+    @Override
+    public void onFinishEditDialog(String inputText) {
+        layoutAdapter.notifyDataSetChanged();
+    }
 }

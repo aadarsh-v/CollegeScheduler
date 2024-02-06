@@ -8,12 +8,18 @@ public class Todo {
     Calendar dueDate;
     String task;
     private boolean complete;
+
+    private int year, month, day;
     public Todo(String task, int year, int month, int day) {
         this.dueDate = new GregorianCalendar();
         this.dueDate.set(Calendar.YEAR, year);
-        this.dueDate.set(Calendar.MONTH, month);
+        this.dueDate.set(Calendar.MONTH, month - 1);
         this.dueDate.set(Calendar.DAY_OF_MONTH, day);
         this.task = task;
+
+        this.year = year;
+        this.month = month;
+        this.day = day;
     }
 
     public Calendar getDueDate() {
@@ -40,5 +46,9 @@ public class Todo {
     }
 
     public void setComplete(Boolean complete) { this.complete = complete; }
-    public Boolean isComplete() { return complete; }
+    public Boolean isComplete() { return this.complete; }
+
+    public String getYear() { return String.valueOf(this.year); }
+    public String getMonth() { return String.valueOf(this.month); }
+    public String getDay() { return String.valueOf(this.day); }
 }

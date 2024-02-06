@@ -24,4 +24,7 @@
     <string name="delete">Delete</string>
     <string name="due_date">Due date</string>
     <string name="todo">Todo</string>
+    <string name="view_details">Details</string>
+    <string name="edit_details">Edit</string>
+    <string name="remove">Remove</string>
 </resources>
