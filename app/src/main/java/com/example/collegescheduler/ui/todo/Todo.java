@@ -4,18 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import com.example.collegescheduler.ui.Item;
+public class Todo extends Item {
 
-public class Todo {
-    Calendar dueDate;
     String task;
     private boolean complete;
 
     private int year, month, day;
     public Todo(String task, int year, int month, int day) {
-        this.dueDate = new GregorianCalendar();
-        this.dueDate.set(Calendar.YEAR, year);
-        this.dueDate.set(Calendar.MONTH, month - 1);
-        this.dueDate.set(Calendar.DAY_OF_MONTH, day);
+        super.dueDate = new GregorianCalendar();
+        super.dueDate.set(Calendar.YEAR, year);
+        super.dueDate.set(Calendar.MONTH, month - 1);
+        super.dueDate.set(Calendar.DAY_OF_MONTH, day);
         this.task = task;
 
         this.year = year;
@@ -24,24 +24,24 @@ public class Todo {
     }
 
     public Calendar getDueDate() {
-        return dueDate;
+        return super.dueDate;
     }
 
     public String getReadableDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM, YYYY");
-        String dateTime = dateFormat.format(this.dueDate.getTime()).toString();
+        String dateTime = dateFormat.format(super.dueDate.getTime()).toString();
         System.out.println(dateTime);
         return dateTime;
     }
 
     public String getDetailedDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd, YYYY", Locale.US);
-        String dateTime = dateFormat.format(this.dueDate.getTime()).toString();
+        String dateTime = dateFormat.format(super.dueDate.getTime()).toString();
         return "Date: " + dateTime;
     }
 
     public void setDueDate(Calendar dueDate) {
-        this.dueDate = dueDate;
+        super.dueDate = dueDate;
     }
 
     public String getTask() {

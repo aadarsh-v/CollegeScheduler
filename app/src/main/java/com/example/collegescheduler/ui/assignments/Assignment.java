@@ -1,14 +1,16 @@
 package com.example.collegescheduler.ui.assignments;
 
+import com.example.collegescheduler.ui.Item;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-public class Assignment {
+public class Assignment extends Item {
     private String name;
     private String course;
-    private Calendar dueDate;
+
     private boolean complete;
 
     private int year, month, day;
@@ -16,10 +18,10 @@ public class Assignment {
     public Assignment(String name, String course, int year, int month, int day) {
         this.name = name;
         this.course = course;
-        this.dueDate = new GregorianCalendar();
-        this.dueDate.set(Calendar.YEAR, year);
-        this.dueDate.set(Calendar.MONTH, month - 1);
-        this.dueDate.set(Calendar.DAY_OF_MONTH, day);
+        super.dueDate = new GregorianCalendar();
+        super.dueDate.set(Calendar.YEAR, year);
+        super.dueDate.set(Calendar.MONTH, month - 1);
+        super.dueDate.set(Calendar.DAY_OF_MONTH, day);
 
         this.day = day;
         this.month = month;
@@ -31,13 +33,13 @@ public class Assignment {
     public Calendar getDate() { return dueDate; }
     public String getReadableDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM, YYYY");
-        String dateTime = dateFormat.format(this.dueDate.getTime()).toString();
+        String dateTime = dateFormat.format(super.dueDate.getTime()).toString();
         return dateTime;
     }
 
     public String getDetailedDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd, YYYY", Locale.US);
-        String dateTime = dateFormat.format(this.dueDate.getTime()).toString();
+        String dateTime = dateFormat.format(super.dueDate.getTime()).toString();
         return "Date: " + dateTime;
     }
 
@@ -46,7 +48,7 @@ public class Assignment {
         this.name = name;
     }
     public void setCourse(String course) { this.course = course; }
-    public void setDate(Calendar date) { this.dueDate = date; }
+    public void setDate(Calendar date) { super.dueDate = date; }
     public void setComplete(boolean complete) { this.complete = complete; }
 
     public String getDay() { return String.valueOf(this.day); }

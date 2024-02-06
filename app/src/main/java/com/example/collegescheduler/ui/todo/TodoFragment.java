@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.collegescheduler.R;
 import com.example.collegescheduler.databinding.FragmentTodoBinding;
+import com.example.collegescheduler.ui.Item;
 import com.example.collegescheduler.ui.ItemAdapter;
 import com.example.collegescheduler.ui.assignments.Assignment;
 import com.example.collegescheduler.ui.assignments.AssignmentAddDialog;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialogListener, AssignmentAddDialog.ButtonDialogListener {
 
     private FragmentTodoBinding binding;
-    public static ArrayList<Object> items = new ArrayList<Object>();
+    public static ArrayList<Item> items = new ArrayList<Item>();
     public ItemAdapter layoutAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,

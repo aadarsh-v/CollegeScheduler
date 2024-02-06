@@ -34,11 +34,11 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
     FragmentActivity activity;
-    List<Object> items;
+    List<Item> items;
 
     private final int ASSIGNMENT = 0, EXAM = 1, TODO = 2;
 
-    public ItemAdapter(Context context, FragmentActivity activity, List<Object> items) {
+    public ItemAdapter(Context context, FragmentActivity activity, List<Item> items) {
         this.context = context;
         this.activity = activity;
         this.items = items;
@@ -80,7 +80,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        Object item = items.get(position);
+        Item item = items.get(position);
         if (item instanceof Assignment) {
             return ASSIGNMENT;
         } else if (item instanceof Exam) {
@@ -332,7 +332,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         inflater.inflate(R.menu.item_menu, popup.getMenu());
         popup.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.view_details) {
-                Object cell = TodoFragment.items.get(currentListItemIndex);
+                Item cell = TodoFragment.items.get(currentListItemIndex);
                 if (cell instanceof Todo) {
                     todoDetailsDialogue();
                 } else if (cell instanceof Assignment) {
@@ -342,7 +342,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
                 return true;
             } else if (item.getItemId() == R.id.edit_details) {
-                Object cell = TodoFragment.items.get(currentListItemIndex);
+                Item cell = TodoFragment.items.get(currentListItemIndex);
                 if (cell instanceof Todo) {
                     todoEditButtonDialog();
                 } else if (cell instanceof Assignment) {
