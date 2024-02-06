@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.example.collegescheduler.R;
+import com.example.collegescheduler.ui.MinMaxFilter;
 
 public class TodoAddDialog extends AppCompatDialogFragment {
     private EditText task;
@@ -33,8 +35,11 @@ public class TodoAddDialog extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.todo_add, null);
         task = view.findViewById(R.id.taskInputDialog);
         EditText year = view.findViewById(R.id.yearInput);
+        year.setFilters(new InputFilter[]{ new MinMaxFilter(0, 9999)});
         EditText month = view.findViewById(R.id.monthInput);
+        month.setFilters(new InputFilter[]{ new MinMaxFilter(1, 12)});
         EditText day = view.findViewById(R.id.dayInput);
+        day.setFilters(new InputFilter[]{ new MinMaxFilter(1, 31)});
 
         builder.setView(view).setTitle("Add Task").setNegativeButton("Back",
                 (dialog, which) -> {

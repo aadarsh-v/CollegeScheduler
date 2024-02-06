@@ -24,7 +24,7 @@ public class CourseAddDialog extends AppCompatDialogFragment {
 
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.add_course_button_on_click_menu, null);
+        View view = inflater.inflate(R.layout.course_add, null);
         course = view.findViewById(R.id.courseInputDialog);
         EditText time = view.findViewById(R.id.time);
         EditText repeatday = view.findViewById(R.id.repeatedDays);

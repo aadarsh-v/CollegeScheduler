@@ -3,6 +3,7 @@ package com.example.collegescheduler.ui.exams;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class Exam {
     private String name;
@@ -36,6 +37,17 @@ public class Exam {
         examFormat = new SimpleDateFormat("HH:mm");
         String dateTime = examFormat.format(this.calendar.getTime()).toString();
         return dateTime;
+    }
+
+    public String getDetailedDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd, YYYY", Locale.US);
+        String dateTime = dateFormat.format(this.calendar.getTime()).toString();
+        return "Date: " + dateTime;
+    }
+    public String getDetailedTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.US);
+        String dateTime = dateFormat.format(this.calendar.getTime()).toString();
+        return "Time: " + dateTime;
     }
 
     public String getLocation() { return this.location; }

@@ -3,6 +3,7 @@ package com.example.collegescheduler.ui.assignments;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class Assignment {
     private String name;
@@ -31,9 +32,15 @@ public class Assignment {
     public String getReadableDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM, YYYY");
         String dateTime = dateFormat.format(this.dueDate.getTime()).toString();
-        System.out.println(dateTime);
         return dateTime;
     }
+
+    public String getDetailedDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd, YYYY", Locale.US);
+        String dateTime = dateFormat.format(this.dueDate.getTime()).toString();
+        return "Date: " + dateTime;
+    }
+
     public boolean isComplete() { return complete; }
     public void setName(String name) {
         this.name = name;

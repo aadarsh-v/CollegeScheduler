@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -58,7 +59,14 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             if (item.getItemId() == R.id.view_details) {
-                mode.finish();
+                Object cell = TodoFragment.items.get(currentListItemIndex);
+                if (cell instanceof Todo) {
+                    todoDetailsDialogue();
+                    mode.finish();
+                } else {
+                    mode.finish();
+                    return false;
+                }
                 return true;
             } else if (item.getItemId() == R.id.edit_details) {
                 Object cell = TodoFragment.items.get(currentListItemIndex);
@@ -247,7 +255,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         confirm_removal.show();
     }
 
-    public void todoEditButtonDialog() {
+    private void todoEditButtonDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
 
@@ -276,7 +284,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         builder.show();
     }
 
-    public void assignmentEditButtonDialog() {
+    private void assignmentEditButtonDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
 
@@ -310,7 +318,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         builder.show();
     }
 
-    public void examEditButtonDialog() {
+    private void examEditButtonDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
 
@@ -340,6 +348,26 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 notifyDataSetChanged();
             }
         });
+
+        builder.show();
+    }
+
+    private void todoDetailsDialogue() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = activity.getLayoutInflater();
+
+        Todo item = (Todo) TodoFragment.items.get(currentListItemIndex);
+
+        View view = inflater.inflate(R.layout.todo_details, null);
+        TextView task = view.findViewById(R.id.task);
+        task.setText(item.getTask());
+        TextView date = view.findViewById(R.id.date);
+        date.setText(item.getDetailedDate());
+
+        builder.setView(view).setTitle("Task Details").setNegativeButton("Back",
+                (dialog, which) -> {
+
+                });
 
         builder.show();
     }

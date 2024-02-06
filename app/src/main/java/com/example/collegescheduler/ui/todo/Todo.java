@@ -3,6 +3,7 @@ package com.example.collegescheduler.ui.todo;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class Todo {
     Calendar dueDate;
@@ -31,6 +32,12 @@ public class Todo {
         String dateTime = dateFormat.format(this.dueDate.getTime()).toString();
         System.out.println(dateTime);
         return dateTime;
+    }
+
+    public String getDetailedDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd, YYYY", Locale.US);
+        String dateTime = dateFormat.format(this.dueDate.getTime()).toString();
+        return "Date: " + dateTime;
     }
 
     public void setDueDate(Calendar dueDate) {

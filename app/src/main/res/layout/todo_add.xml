@@ -13,41 +13,114 @@
         tools:layout_editor_absoluteY="0dp"
         android:gravity="center_horizontal">
 
-        <EditText
-            android:id="@+id/taskInputDialog"
+        <LinearLayout
             android:layout_width="287dp"
             android:layout_height="48dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="@string/task"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/dayInput" />
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:gravity="center_horizontal">
 
-        <EditText
-            android:id="@+id/dayInput"
-            android:layout_width="287dp"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:inputType="date"
-            android:text="@string/day" />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:ems="10"
+                android:text="@string/task" />
 
-        <EditText
-            android:id="@+id/monthInput"
-            android:layout_width="287dp"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:inputType="date"
-            android:text="@string/month" />
+            <EditText
+                android:id="@+id/taskInputDialog"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dayInput"
+                android:layout_marginStart="10dp" />
 
-        <EditText
-            android:id="@+id/yearInput"
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="287dp"
             android:layout_height="48dp"
-            android:ems="10"
-            android:inputType="date"
-            android:text="@string/year" />
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:ems="10"
+                android:text="@string/day" />
+
+            <EditText
+                android:id="@+id/dayInput"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_marginStart="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="287dp"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:ems="10"
+                android:text="@string/month" />
+
+            <EditText
+                android:id="@+id/monthInput"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_marginStart="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="287dp"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:ems="10"
+                android:text="@string/year" />
+
+            <EditText
+                android:id="@+id/yearInput"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_marginStart="10dp" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
