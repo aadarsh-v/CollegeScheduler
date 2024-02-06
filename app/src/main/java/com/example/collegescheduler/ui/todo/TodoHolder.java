@@ -23,12 +23,11 @@ public class TodoHolder extends RecyclerView.ViewHolder {
         date = itemView.findViewById(R.id.dueDate);
         task = itemView.findViewById(R.id.todoName);
 
-        box.setOnLongClickListener(new View.OnLongClickListener() {
+        box.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
-                items.remove(items.get(getBindingAdapterPosition()));
-                Toast.makeText(v.getContext(),"Task will be deleted after refresh!", Toast.LENGTH_LONG).show();
-                return true;
+            public void onClick(View v) {
+                Todo item = (Todo) items.get(getBindingAdapterPosition());
+                item.setComplete(!item.isComplete());
             }
         });
     }

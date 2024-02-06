@@ -12,12 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.collegescheduler.R;
-import com.example.collegescheduler.ui.todo.TodoAddDialog;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class AddCourseButtonDialog extends AppCompatDialogFragment {
+public class CourseAddDialog extends AppCompatDialogFragment {
     private EditText course;
     private Calendar date;
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

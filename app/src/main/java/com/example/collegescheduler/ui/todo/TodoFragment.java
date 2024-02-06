@@ -44,13 +44,6 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
                 openDialog();
             }
         });
-        Button refreshButtonToDoFrag = (Button) root.findViewById(R.id.refreshButtonToDo);
-        refreshButtonToDoFrag.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                rV.setAdapter(layoutAdapter);
-            }
-        });
 
         return root;
     }
@@ -67,12 +60,6 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
         super.onDestroyView();
         binding = null;
     }
-
-//    @Override
-//    public void onViewCreated(View view, Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//        layoutAdapter = new ItemAdapter(getContext().getApplicationContext(), items);
-//    }
 
     @Override
     public void onCreate(Bundle savedBundleInstance) {

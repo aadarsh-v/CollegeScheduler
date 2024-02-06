@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.collegescheduler.R;
+import com.example.collegescheduler.ui.todo.Todo;
 
 public class ExamHolder extends RecyclerView.ViewHolder {
     CheckBox box;
@@ -23,12 +24,11 @@ public class ExamHolder extends RecyclerView.ViewHolder {
         date = itemView.findViewById(R.id.examDate);
         course = itemView.findViewById(R.id.courseName);
         name = itemView.findViewById(R.id.examName);
-        box.setOnLongClickListener(new View.OnLongClickListener() {
+        box.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
-                items.remove(items.get(getBindingAdapterPosition()));
-                Toast.makeText(v.getContext(),"Exam will be deleted after refresh!", Toast.LENGTH_LONG).show();
-                return true;
+            public void onClick(View v) {
+                Exam item = (Exam) items.get(getBindingAdapterPosition());
+                item.setComplete(!item.isComplete());
             }
         });
     }
