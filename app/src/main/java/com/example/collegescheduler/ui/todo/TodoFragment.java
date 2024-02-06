@@ -38,7 +38,6 @@ public class TodoFragment extends Fragment {
         rV.setLayoutManager(new LinearLayoutManager(rV.getContext()));
         rV.setAdapter( layoutAdapter);
         items.add(new Todo("sadf",2023, 15, 11));
-        items.add(new Todo("sadfafds",2023, 02, 28));
         items.add(new Assignment("Assignment 2", "MATH 4803", 2023, 03, 07));
         items.add(new Exam("Test 1", "MATH 4108", "Skiles 169", 2023, 02, 16, 11, 30));
         Button addButtonToDoFrag = (Button) root.findViewById(R.id.addButtonToDo);
