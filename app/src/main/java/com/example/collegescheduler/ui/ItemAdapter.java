@@ -7,10 +7,12 @@ import android.text.InputFilter;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,70 +45,10 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     private int currentListItemIndex;
-    private ActionMode currentActionMode;
-    private ActionMode.Callback modeCallback = new ActionMode.Callback() {
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            mode.setTitle("Options");
-            mode.getMenuInflater().inflate(R.menu.item_menu, menu);
-            return true;
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            return false;
-        }
-
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            if (item.getItemId() == R.id.view_details) {
-                Object cell = TodoFragment.items.get(currentListItemIndex);
-                if (cell instanceof Todo) {
-                    todoDetailsDialogue();
-                    mode.finish();
-                } else if (cell instanceof Assignment) {
-                    assignmentDetailsDialogue();
-                    mode.finish();
-                } else {
-                    mode.finish();
-                    return false;
-                }
-                return true;
-            } else if (item.getItemId() == R.id.edit_details) {
-                Object cell = TodoFragment.items.get(currentListItemIndex);
-                if (cell instanceof Todo) {
-                    todoEditButtonDialog();
-                    mode.finish();
-                } else if (cell instanceof Assignment) {
-                    assignmentEditButtonDialog();
-                    mode.finish();
-                } else if (cell instanceof Exam) {
-                    examEditButtonDialog();
-                    mode.finish();
-                } else {
-                    mode.finish();
-                    return false;
-                }
-                return true;
-            } else if (item.getItemId() == R.id.remove) {
-                confirmRemovalDialog();
-                mode.finish();
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            currentActionMode = null;
-        }
-    };
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // return new TodoHolder(LayoutInflater.from(context).inflate(R.layout.todo_item_recycle_view,parent,false));
         RecyclerView.ViewHolder viewHolder;
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
@@ -171,10 +113,9 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         viewHolder.itemView.setOnLongClickListener(v -> {
-            int position1 = viewHolder.getBindingAdapterPosition();
-            currentListItemIndex = position1;
-            if (currentActionMode != null) { return false; }
-            currentActionMode = v.startActionMode(modeCallback);
+            int pos = viewHolder.getBindingAdapterPosition();
+            currentListItemIndex = pos;
+            showItemMenu(v);
             v.setSelected(true);
             return true;
         });
@@ -383,6 +324,43 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 });
 
         builder.show();
+    }
+
+    private void showItemMenu(View v) {
+        PopupMenu popup = new PopupMenu(this.activity, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.item_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.view_details) {
+                Object cell = TodoFragment.items.get(currentListItemIndex);
+                if (cell instanceof Todo) {
+                    todoDetailsDialogue();
+                } else if (cell instanceof Assignment) {
+                    assignmentDetailsDialogue();
+                } else {
+                    return false;
+                }
+                return true;
+            } else if (item.getItemId() == R.id.edit_details) {
+                Object cell = TodoFragment.items.get(currentListItemIndex);
+                if (cell instanceof Todo) {
+                    todoEditButtonDialog();
+                } else if (cell instanceof Assignment) {
+                    assignmentEditButtonDialog();
+                } else if (cell instanceof Exam) {
+                    examEditButtonDialog();
+                } else {
+                    return false;
+                }
+                return true;
+            } else if (item.getItemId() == R.id.remove) {
+                confirmRemovalDialog();
+                return true;
+            } else {
+                return false;
+            }
+        });
+        popup.show();
     }
 
 }

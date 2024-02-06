@@ -1,14 +1,18 @@
 package com.example.collegescheduler.ui.todo;
 
+import android.app.Notification;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.ActionMode;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,47 +32,8 @@ import java.util.ArrayList;
 public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialogListener, AssignmentAddDialog.ButtonDialogListener {
 
     private FragmentTodoBinding binding;
-    public Context context = getActivity();
     public static ArrayList<Object> items = new ArrayList<Object>();
     public ItemAdapter layoutAdapter;
-
-    private ActionMode currentActionMode;
-    private ActionMode.Callback modeCallback = new ActionMode.Callback() {
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            mode.setTitle("Options");
-            mode.getMenuInflater().inflate(R.menu.add_item_menu, menu);
-            return true;
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            return false;
-        }
-
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            if (item.getItemId() == R.id.todo) {
-                openTodoDialog();
-                mode.finish();
-                return true;
-            } else if (item.getItemId() == R.id.assignment) {
-                openAssignmentDialog();
-                mode.finish();
-                return true;
-            } else if (item.getItemId() == R.id.exam) {
-                mode.finish();
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            currentActionMode = null;
-        }
-    };
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -83,13 +48,9 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
         rV.setLayoutManager(new LinearLayoutManager(rV.getContext()));
         rV.setAdapter(layoutAdapter);
         Button addButtonToDoFrag = (Button) root.findViewById(R.id.addButtonToDo);
-        addButtonToDoFrag.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (currentActionMode != null) { return; }
-                currentActionMode = v.startActionMode(modeCallback);
-                v.setSelected(true);
-            }
+        addButtonToDoFrag.setOnClickListener(v -> {
+            showAddItemMenu(v);
+            v.setSelected(true);
         });
 
         return root;
@@ -107,7 +68,6 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
         dia.show(getParentFragmentManager(), "Add New Task Dialog");
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -123,5 +83,25 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
     @Override
     public void onFinishEditDialog(String inputText) {
         layoutAdapter.notifyDataSetChanged();
+    }
+
+    private void showAddItemMenu(View v) {
+        PopupMenu popup = new PopupMenu(getActivity(), v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.add_item_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.todo) {
+                openTodoDialog();
+                return true;
+            } else if (item.getItemId() == R.id.assignment) {
+                openAssignmentDialog();
+                return true;
+            } else if (item.getItemId() == R.id.exam) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        popup.show();
     }
 }
