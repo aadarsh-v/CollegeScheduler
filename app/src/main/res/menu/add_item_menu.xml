@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/todo"
+            android:orderInCategory="100"
+            android:title="@string/task" />
+        <item
+            android:id="@+id/assignment"
+            android:orderInCategory="100"
+            android:title="@string/assignment" />
+        <item
+            android:id="@+id/exam"
+            android:orderInCategory="100"
+            android:title="@string/exam" />
+    </group>
+</menu>

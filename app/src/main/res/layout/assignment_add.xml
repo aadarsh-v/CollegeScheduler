@@ -22,7 +22,7 @@ android:layout_height="match_parent">
         android:gravity="center_horizontal">
 
         <TextView
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="48dp"
             android:gravity="center_vertical"
             android:inputType="text"
@@ -30,7 +30,7 @@ android:layout_height="match_parent">
             android:text="@string/task" />
 
         <EditText
-            android:id="@+id/taskInputDialog"
+            android:id="@+id/nameInputDialog"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:ems="10"
@@ -61,10 +61,11 @@ android:layout_height="match_parent">
 
         <EditText
             android:id="@+id/courseInputDialog"
-            android:layout_width="287dp"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:layout_marginStart="10dp" />
 
     </LinearLayout>
 

@@ -3,6 +3,7 @@ package com.example.collegescheduler.ui;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.InputFilter;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -62,6 +63,9 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 Object cell = TodoFragment.items.get(currentListItemIndex);
                 if (cell instanceof Todo) {
                     todoDetailsDialogue();
+                    mode.finish();
+                } else if (cell instanceof Assignment) {
+                    assignmentDetailsDialogue();
                     mode.finish();
                 } else {
                     mode.finish();
@@ -145,13 +149,6 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return -1;
     }
 
-//    @Override
-//    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-//        holder.getCourse().setText(((Item) items.get(position)).getCourse());
-//        holder.getDate().setText(items.get(position).getDueDate());
-//        holder.getTask().setText(items.get(position).getTask());
-//    }
-
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
@@ -173,17 +170,13 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 break;
         }
 
-        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                int position = viewHolder.getBindingAdapterPosition();
-                currentListItemIndex = position;
-                if (currentActionMode != null) { return false; }
-                currentActionMode = v.startActionMode(modeCallback);
-                v.setSelected(true);
-                return true;
-            }
-
+        viewHolder.itemView.setOnLongClickListener(v -> {
+            int position1 = viewHolder.getBindingAdapterPosition();
+            currentListItemIndex = position1;
+            if (currentActionMode != null) { return false; }
+            currentActionMode = v.startActionMode(modeCallback);
+            v.setSelected(true);
+            return true;
         });
     }
 
@@ -219,38 +212,43 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private void confirmRemovalDialog() {
         AlertDialog.Builder confirm_removal = new AlertDialog.Builder(context);
         confirm_removal.setTitle("Confirm Removal");
-        confirm_removal.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                items.remove(currentListItemIndex);
-                notifyDataSetChanged();
-            }
+        confirm_removal.setPositiveButton("Confirm", (dialog, item) -> {
+            items.remove(currentListItemIndex);
+            notifyDataSetChanged();
         });
-        confirm_removal.setNegativeButton("Back", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) { }
-        });
+        confirm_removal.setNegativeButton("Back", (dialog, item) -> { });
 
         confirm_removal.show();
     }
     private void confirmTodoEditDialog(EditText task, EditText year, EditText month, EditText day) {
         AlertDialog.Builder confirm_removal = new AlertDialog.Builder(context);
         confirm_removal.setTitle("Confirm Edit");
-        confirm_removal.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                TodoFragment.items.set(currentListItemIndex, new Todo(task.getText().toString(),
-                        Integer.parseInt(year.getText().toString()),
-                        Integer.parseInt(month.getText().toString()),
-                        Integer.parseInt(day.getText().toString())
-                ));
-                notifyDataSetChanged();
-            }
+        confirm_removal.setPositiveButton("Confirm", (dialog, item) -> {
+            TodoFragment.items.set(currentListItemIndex, new Todo(task.getText().toString(),
+                    Integer.parseInt(year.getText().toString()),
+                    Integer.parseInt(month.getText().toString()),
+                    Integer.parseInt(day.getText().toString())
+            ));
+            notifyDataSetChanged();
         });
-        confirm_removal.setNegativeButton("Back", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) { }
+        confirm_removal.setNegativeButton("Back", (dialog, item) -> { });
+
+        confirm_removal.show();
+    }
+
+    private void confirmAssignmentEditDialog(EditText name, EditText course, EditText year, EditText month, EditText day) {
+        AlertDialog.Builder confirm_removal = new AlertDialog.Builder(context);
+        confirm_removal.setTitle("Confirm Edit");
+        confirm_removal.setPositiveButton("Confirm", (dialog, item) -> {
+            TodoFragment.items.set(currentListItemIndex, new Assignment(name.getText().toString(),
+                    course.getText().toString(),
+                    Integer.parseInt(year.getText().toString()),
+                    Integer.parseInt(month.getText().toString()),
+                    Integer.parseInt(day.getText().toString())
+            ));
+            notifyDataSetChanged();
         });
+        confirm_removal.setNegativeButton("Back", (dialog, item) -> { });
 
         confirm_removal.show();
     }
@@ -265,21 +263,19 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         EditText task = view.findViewById(R.id.taskInputDialog);
         task.setText(item.getTask());
         EditText year = view.findViewById(R.id.yearInput);
+        year.setFilters(new InputFilter[]{ new MinMaxFilter(0, 9999)});
         year.setText(item.getYear());
         EditText month = view.findViewById(R.id.monthInput);
+        month.setFilters(new InputFilter[]{ new MinMaxFilter(1, 12)});
         month.setText(item.getMonth());
         EditText day = view.findViewById(R.id.dayInput);
+        day.setFilters(new InputFilter[]{ new MinMaxFilter(1, 31)});
         day.setText(item.getDay());
 
         builder.setView(view).setTitle("Edit Task").setNegativeButton("Back",
                 (dialog, which) -> {
 
-                }).setPositiveButton("Done", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                confirmTodoEditDialog(task, year, month, day);
-            }
-        });
+                }).setPositiveButton("Done", (dialog, which) -> confirmTodoEditDialog(task, year, month, day));
 
         builder.show();
     }
@@ -288,32 +284,27 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
 
-        Todo item = (Todo) TodoFragment.items.get(currentListItemIndex);
+        Assignment item = (Assignment) TodoFragment.items.get(currentListItemIndex);
 
-        View view = inflater.inflate(R.layout.todo_add, null);
-        EditText task = view.findViewById(R.id.taskInputDialog);
-        task.setText(item.getTask());
+        View view = inflater.inflate(R.layout.assignment_add, null);
+        EditText name = view.findViewById(R.id.nameInputDialog);
+        name.setText(item.getName());
+        EditText course = view.findViewById(R.id.courseInputDialog);
+        course.setText(item.getCourse());
         EditText year = view.findViewById(R.id.yearInput);
+        year.setFilters(new InputFilter[]{ new MinMaxFilter(0, 9999)});
         year.setText(item.getYear());
         EditText month = view.findViewById(R.id.monthInput);
+        month.setFilters(new InputFilter[]{ new MinMaxFilter(1, 12)});
         month.setText(item.getMonth());
         EditText day = view.findViewById(R.id.dayInput);
+        day.setFilters(new InputFilter[]{ new MinMaxFilter(1, 31)});
         day.setText(item.getDay());
 
         builder.setView(view).setTitle("Edit Task").setNegativeButton("Back",
                 (dialog, which) -> {
 
-                }).setPositiveButton("Done", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                TodoFragment.items.set(currentListItemIndex, new Todo(task.getText().toString(),
-                        Integer.parseInt(year.getText().toString()),
-                        Integer.parseInt(month.getText().toString()),
-                        Integer.parseInt(day.getText().toString())
-                ));
-                notifyDataSetChanged();
-            }
-        });
+                }).setPositiveButton("Done", (dialog, which) -> confirmAssignmentEditDialog(name, course, year, month, day));
 
         builder.show();
     }
@@ -328,26 +319,26 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         EditText task = view.findViewById(R.id.taskInputDialog);
         task.setText(item.getTask());
         EditText year = view.findViewById(R.id.yearInput);
+        year.setFilters(new InputFilter[]{ new MinMaxFilter(0, 9999)});
         year.setText(item.getYear());
         EditText month = view.findViewById(R.id.monthInput);
+        month.setFilters(new InputFilter[]{ new MinMaxFilter(1, 12)});
         month.setText(item.getMonth());
         EditText day = view.findViewById(R.id.dayInput);
+        day.setFilters(new InputFilter[]{ new MinMaxFilter(1, 31)});
         day.setText(item.getDay());
 
         builder.setView(view).setTitle("Edit Task").setNegativeButton("Back",
                 (dialog, which) -> {
 
-                }).setPositiveButton("Done", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                TodoFragment.items.set(currentListItemIndex, new Todo(task.getText().toString(),
-                        Integer.parseInt(year.getText().toString()),
-                        Integer.parseInt(month.getText().toString()),
-                        Integer.parseInt(day.getText().toString())
-                ));
-                notifyDataSetChanged();
-            }
-        });
+                }).setPositiveButton("Done", (dialog, which) -> {
+                    TodoFragment.items.set(currentListItemIndex, new Todo(task.getText().toString(),
+                            Integer.parseInt(year.getText().toString()),
+                            Integer.parseInt(month.getText().toString()),
+                            Integer.parseInt(day.getText().toString())
+                    ));
+                    notifyDataSetChanged();
+                });
 
         builder.show();
     }
@@ -365,6 +356,28 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         date.setText(item.getDetailedDate());
 
         builder.setView(view).setTitle("Task Details").setNegativeButton("Back",
+                (dialog, which) -> {
+
+                });
+
+        builder.show();
+    }
+
+    private void assignmentDetailsDialogue() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = activity.getLayoutInflater();
+
+        Assignment item = (Assignment) TodoFragment.items.get(currentListItemIndex);
+
+        View view = inflater.inflate(R.layout.assignment_details, null);
+        TextView name = view.findViewById(R.id.name);
+        name.setText(item.getName());
+        TextView course = view.findViewById(R.id.course);
+        course.setText("Course: " + item.getCourse());
+        TextView date = view.findViewById(R.id.date);
+        date.setText(item.getDetailedDate());
+
+        builder.setView(view).setTitle("Assignment Details").setNegativeButton("Back",
                 (dialog, which) -> {
 
                 });

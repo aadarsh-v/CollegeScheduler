@@ -33,4 +33,6 @@
     <string name="view_details">Details</string>
     <string name="edit_details">Edit</string>
     <string name="remove">Remove</string>
+    <string name="assignment">Assignment</string>
+    <string name="exam">Exam</string>
 </resources>
