@@ -242,7 +242,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         day.setFilters(new InputFilter[]{ new MinMaxFilter(1, 31)});
         day.setText(item.getDay());
 
-        builder.setView(view).setTitle("Edit Task").setNegativeButton("Back",
+        builder.setView(view).setTitle("Edit Assignment").setNegativeButton("Back",
                 (dialog, which) -> {
 
                 }).setPositiveButton("Done", (dialog, which) -> confirmAssignmentEditDialog(name, course, year, month, day));
@@ -269,7 +269,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         day.setFilters(new InputFilter[]{ new MinMaxFilter(1, 31)});
         day.setText(item.getDay());
 
-        builder.setView(view).setTitle("Edit Task").setNegativeButton("Back",
+        builder.setView(view).setTitle("Edit Exam").setNegativeButton("Back",
                 (dialog, which) -> {
 
                 }).setPositiveButton("Done", (dialog, which) -> {

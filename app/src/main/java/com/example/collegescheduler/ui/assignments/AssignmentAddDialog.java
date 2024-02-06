@@ -43,7 +43,7 @@ public class AssignmentAddDialog extends AppCompatDialogFragment {
         EditText day = view.findViewById(R.id.dayInput);
         day.setFilters(new InputFilter[]{ new MinMaxFilter(1, 31)});
 
-        builder.setView(view).setTitle("Add Task").setNegativeButton("Back",
+        builder.setView(view).setTitle("Add Assignment").setNegativeButton("Back",
                 (dialog, which) -> {
 
                 }).setPositiveButton("Done", new DialogInterface.OnClickListener() {
