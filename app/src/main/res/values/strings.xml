@@ -24,6 +24,13 @@
     <string name="delete">Delete</string>
     <string name="due_date">Due date</string>
     <string name="todo">Todo</string>
+    <string name="course">Course</string>
+    <string name="time">Start Time</string>
+    <string name="repeatDays">Days Repeated ex M,TU,W,T,F</string>
+    <string name="professor">Professor</string>
+    <string name="section">Section</string>
+    <string name="location">Building Name\n</string>
+    <string name="room_number">Room #</string>
     <string name="view_details">Details</string>
     <string name="edit_details">Edit</string>
     <string name="remove">Remove</string>

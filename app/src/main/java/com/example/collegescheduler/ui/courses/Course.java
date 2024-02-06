@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 
 public class Course {
     private String name;
-    private LocalDateTime time;
+    private int time;
     private String repeatDays;
     private String professor;
     private String section;
     private String location;
     private String room;
 
-    public Course(String name, LocalDateTime time, String repeatDays, String professor, String section, String location, String room) {
+    public Course(String name, int time, String repeatDays, String professor, String section, String location, String room) {
         this.name = name;
         this.time = time;
         this.repeatDays = repeatDays;
@@ -22,7 +22,7 @@ public class Course {
     }
 
     public String getName() { return this.name; }
-    public LocalDateTime getTime() { return this.time; }
+    public int getTime() { return this.time; }
     public String getRepeatDays() { return this.repeatDays; }
     public String getProfessor() { return this.professor; }
     public String getSection() { return this.section; }
@@ -30,7 +30,7 @@ public class Course {
     public String getRoom() { return this.room; }
 
     public void setName(String name) { this.name = name; }
-    public void setTime(LocalDateTime time) { this.time = time; }
+    public void setTime(int time) { this.time = time; }
     public void setRepeatDays(String repeatDays) { this.repeatDays = repeatDays; }
     public void setProfessor(String professor) { this.professor = professor; }
     public void setSection(String section) { this.section = section; }
