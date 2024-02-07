@@ -47,11 +47,16 @@ public class TodoAddDialog extends AppCompatDialogFragment {
                 }).setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                TodoFragment.items.add(new Todo(task.getText().toString(),
+                Todo newTodo = new Todo(task.getText().toString(),
                         Integer.parseInt(year.getText().toString()),
                         Integer.parseInt(month.getText().toString()),
                         Integer.parseInt(day.getText().toString())
-                ));
+                );
+                TodoFragment.items.add(newTodo);
+//                if (TodoFragment.items != TodoFragment.allItems) {
+//                    TodoFragment.allItems.add(newTodo);
+//                }
+
 
                 ButtonDialogListener listener = (ButtonDialogListener) targetFragment;
                 listener.onFinishEditDialog("test");

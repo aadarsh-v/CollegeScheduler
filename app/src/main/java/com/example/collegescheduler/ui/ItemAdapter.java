@@ -485,20 +485,29 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public void sortItems(String s) {
-        if (s == "date") {
+        getComplete();
+        getIncomplete();
+        getDateFiltered();
+        getCourseFiltered();
+        if (s.equals("date")) {
             this.items = dateFiltered;
-        } else if (s == "course") {
+        } else if (s.equals("course")) {
             this.items = courseFiltered;
-        } else if (s == "complete") {
-            notifyDataSetChanged();
+        } else if (s.equals("complete")) {
             this.items = complete;
-        } else if (s == "incomplete") {
-            notifyDataSetChanged();
+        } else if (s.equals("incomplete")) {
             this.items = incomplete;
-        } else if (s == "unsorted") {
+        } else if (s.equals("unsorted")) {
             this.items = fullItems;
         }
         notifyDataSetChanged();
     }
 
+//    public void setItems(List<Object> items) {
+//        this.items = items;
+//    }
+//
+    public List<Item> getItems() {
+        return items;
+    }
 }
