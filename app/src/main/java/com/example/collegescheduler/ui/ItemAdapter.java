@@ -23,10 +23,9 @@ import com.example.collegescheduler.ui.exams.ExamHolder;
 import com.example.collegescheduler.ui.items.CourseItem;
 import com.example.collegescheduler.ui.items.Item;
 import com.example.collegescheduler.ui.todo.Todo;
-import com.example.collegescheduler.ui.todo.TodoFragment;
 import com.example.collegescheduler.ui.todo.TodoHolder;
 
-import java.sql.Array;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
