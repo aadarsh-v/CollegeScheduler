@@ -57,7 +57,6 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
             });
         return root;
     }
-
     public void openTodoDialog() {
         TodoAddDialog dia = new TodoAddDialog();
         dia.setTargetFragment(TodoFragment.this);
@@ -122,17 +121,23 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
         PopupMenu popup = new PopupMenu(getActivity(), v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.sort_menu, popup.getMenu());
+
+
         popup.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.date) {
+                layoutAdapter.getDateFiltered();
                 layoutAdapter.sortItems("date");
                 return true;
             } else if (item.getItemId() == R.id.course) {
+                layoutAdapter.getCourseFiltered();
                 layoutAdapter.sortItems("course");
                 return true;
             } else if (item.getItemId() == R.id.complete) {
+                layoutAdapter.getComplete();
                 layoutAdapter.sortItems("complete");
                 return true;
             } else if (item.getItemId() == R.id.incomplete) {
+                layoutAdapter.getIncomplete();
                 layoutAdapter.sortItems("incomplete");
                 return true;
             } else if (item.getItemId() == R.id.reset) {
@@ -141,6 +146,7 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
             } else {
                 return false;
             }
+
         });
         popup.show();
     }

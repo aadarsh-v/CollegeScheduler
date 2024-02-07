@@ -56,6 +56,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         switch (viewType) {
+
             case EXAM:
                 View v4 = inflater.inflate(R.layout.exams_cell, parent, false);
                 viewHolder = new ExamHolder(v4);
@@ -457,6 +458,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         for (CourseItem item : cf) {
             courseFiltered.add((Item) item);
         }
+        notifyDataSetChanged();
     }
 
     public void getComplete() {
@@ -465,6 +467,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if (item.complete) { c.add(item); }
         }
         complete = c;
+        notifyDataSetChanged();
     }
 
     public void getIncomplete() {
@@ -473,6 +476,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if (!item.complete) { ic.add(item); }
         }
         incomplete = ic;
+        notifyDataSetChanged();
     }
 
     public void getDateFiltered() {
@@ -482,18 +486,18 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         df.sort(Comparator.comparing(obj -> obj.dueDate));
         dateFiltered = df;
+        notifyDataSetChanged();
     }
 
     public void sortItems(String s) {
+
         if (s == "date") {
             this.items = dateFiltered;
         } else if (s == "course") {
             this.items = courseFiltered;
         } else if (s == "complete") {
-            notifyDataSetChanged();
             this.items = complete;
         } else if (s == "incomplete") {
-            notifyDataSetChanged();
             this.items = incomplete;
         } else if (s == "unsorted") {
             this.items = fullItems;
