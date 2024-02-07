@@ -148,22 +148,29 @@ public class CourseItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         CheckBox f = view.findViewById(R.id.friday);
         f.setChecked(item.isF());
 
-        EditText hour = view.findViewById(R.id.hourInput);
-        hour.setText(item.getHour());
-        hour.setFilters(new InputFilter[]{ new MinMaxFilter(1, 24)});
-        EditText min = view.findViewById(R.id.minuteInput);
-        min.setText(item.getMinute());
-        min.setFilters(new InputFilter[]{ new MinMaxFilter(0, 60)});
+        EditText startHour = view.findViewById(R.id.startHourInput);
+        startHour.setText(item.getStartHour());
+        startHour.setFilters(new InputFilter[]{ new MinMaxFilter(1, 24)});
+        EditText startMin = view.findViewById(R.id.startMinuteInput);
+        startMin.setText(item.getStartMinute());
+        startMin.setFilters(new InputFilter[]{ new MinMaxFilter(0, 60)});
+
+        EditText endHour = view.findViewById(R.id.endHourInput);
+        endHour.setText(item.getEndHour());
+        startHour.setFilters(new InputFilter[]{ new MinMaxFilter(1, 24)});
+        EditText endMin = view.findViewById(R.id.endMinuteInput);
+        endMin.setText(item.getStartMinute());
+        endMin.setFilters(new InputFilter[]{ new MinMaxFilter(0, 60)});
 
         builder.setView(view).setTitle("Edit Course").setNegativeButton("Back",
                 (dialog, which) -> {
 
-                }).setPositiveButton("Done", (dialog, which) -> confirmCourseEditDialogue(name, section, professor, location, room, m, t, w, r, f, hour, min));
+                }).setPositiveButton("Done", (dialog, which) -> confirmCourseEditDialogue(name, section, professor, location, room, m, t, w, r, f, startHour, startMin, endHour, endMin));
 
         builder.show();
     }
 
-    private void confirmCourseEditDialogue(EditText name, EditText section, EditText professor, EditText location, EditText room, CheckBox m, CheckBox t, CheckBox w, CheckBox r, CheckBox f, EditText hour, EditText min) {
+    private void confirmCourseEditDialogue(EditText name, EditText section, EditText professor, EditText location, EditText room, CheckBox m, CheckBox t, CheckBox w, CheckBox r, CheckBox f, EditText startHour, EditText startMin, EditText endHour, EditText endMin) {
         AlertDialog.Builder confirm_removal = new AlertDialog.Builder(context);
         confirm_removal.setTitle("Confirm Edit");
         confirm_removal.setPositiveButton("Confirm", (dialog, item) -> {
@@ -177,8 +184,10 @@ public class CourseItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     w.isChecked(),
                     r.isChecked(),
                     f.isChecked(),
-                    Integer.parseInt(hour.getText().toString()),
-                    Integer.parseInt(min.getText().toString())
+                    Integer.parseInt(startHour.getText().toString()),
+                    Integer.parseInt(startMin.getText().toString()),
+                    Integer.parseInt(endHour.getText().toString()),
+                    Integer.parseInt(endMin.getText().toString())
             ));
             notifyDataSetChanged();
         });

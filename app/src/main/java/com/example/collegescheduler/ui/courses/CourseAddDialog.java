@@ -49,10 +49,15 @@ public class CourseAddDialog extends AppCompatDialogFragment {
         CheckBox r = view.findViewById(R.id.thursday);
         CheckBox f = view.findViewById(R.id.friday);
 
-        EditText hour = view.findViewById(R.id.hourInput);
-        hour.setFilters(new InputFilter[]{ new MinMaxFilter(1, 24)});
-        EditText min = view.findViewById(R.id.minuteInput);
-        min.setFilters(new InputFilter[]{ new MinMaxFilter(0, 60)});
+        EditText startHour = view.findViewById(R.id.startHourInput);
+        startHour.setFilters(new InputFilter[]{ new MinMaxFilter(1, 24)});
+        EditText startMin = view.findViewById(R.id.startMinuteInput);
+        startMin.setFilters(new InputFilter[]{ new MinMaxFilter(0, 60)});
+
+        EditText endHour = view.findViewById(R.id.endHourInput);
+        startHour.setFilters(new InputFilter[]{ new MinMaxFilter(1, 24)});
+        EditText endMin = view.findViewById(R.id.endMinuteInput);
+        endMin.setFilters(new InputFilter[]{ new MinMaxFilter(0, 60)});
 
         builder.setView(view).setTitle("Add Course").setNegativeButton("Back",
                 (dialog, which) -> {
@@ -70,8 +75,10 @@ public class CourseAddDialog extends AppCompatDialogFragment {
                         w.isChecked(),
                         r.isChecked(),
                         f.isChecked(),
-                        Integer.parseInt(hour.getText().toString()),
-                        Integer.parseInt(min.getText().toString())
+                        Integer.parseInt(startHour.getText().toString()),
+                        Integer.parseInt(startMin.getText().toString()),
+                        Integer.parseInt(endHour.getText().toString()),
+                        Integer.parseInt(endMin.getText().toString())
                 ));
 
                 CourseAddDialog.ButtonDialogListener listener = (CourseAddDialog.ButtonDialogListener) targetFragment;

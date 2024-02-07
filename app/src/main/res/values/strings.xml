@@ -47,4 +47,6 @@
     <string name="tuesday">T</string>
     <string name="friday">F</string>
     <string name="thursday">R</string>
+    <string name="start">"Start: "</string>
+    <string name="end">"End: "</string>
 </resources>
