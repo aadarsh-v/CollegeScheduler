@@ -501,4 +501,11 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void setItems(List<Object> items) {
+        this.items = items;
+    }
+
+    public List<Object> getItems() {
+        return items;
+    }
 }
