@@ -322,7 +322,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         hour.setFilters(new InputFilter[]{ new MinMaxFilter(1, 24)});
         hour.setText(item.getHours());
         EditText min = view.findViewById(R.id.minuteInput);
-        min.setFilters(new InputFilter[]{ new MinMaxFilter(1, 60)});
+        min.setFilters(new InputFilter[]{ new MinMaxFilter(0, 60)});
         min.setText(item.getMin());
 
         builder.setView(view).setTitle("Edit Exam").setNegativeButton("Back",

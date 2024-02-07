@@ -24,7 +24,7 @@
     <string name="due_date">Due date</string>
     <string name="todo">Todo</string>
     <string name="course">Course</string>
-    <string name="time">Start Time</string>
+    <string name="time">Time</string>
     <string name="repeatDays">Days Repeated ex M,TU,W,T,F</string>
     <string name="professor">Professor</string>
     <string name="section">Section</string>
@@ -42,4 +42,9 @@
     <string name="complete">Complete</string>
     <string name="date">Date</string>
     <string name="reset">Reset</string>
+    <string name="monday">M</string>
+    <string name="wednesday">W</string>
+    <string name="tuesday">T</string>
+    <string name="friday">F</string>
+    <string name="thursday">R</string>
 </resources>
