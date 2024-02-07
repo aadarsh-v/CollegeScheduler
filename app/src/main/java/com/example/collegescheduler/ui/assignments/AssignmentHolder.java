@@ -24,12 +24,9 @@ public class AssignmentHolder extends RecyclerView.ViewHolder {
         course = itemView.findViewById(R.id.courseName);
         date = itemView.findViewById(R.id.dueDate);
 
-        box.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Assignment item = (Assignment) items.get(getBindingAdapterPosition());
-                item.setComplete(!item.isComplete());
-            }
+        box.setOnClickListener(v -> {
+            Assignment item = (Assignment) items.get(getBindingAdapterPosition());
+            item.complete = !item.complete;
         });
     }
 

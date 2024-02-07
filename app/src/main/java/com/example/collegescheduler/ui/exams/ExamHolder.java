@@ -24,12 +24,9 @@ public class ExamHolder extends RecyclerView.ViewHolder {
         date = itemView.findViewById(R.id.examDate);
         course = itemView.findViewById(R.id.courseName);
         name = itemView.findViewById(R.id.examName);
-        box.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Exam item = (Exam) items.get(getBindingAdapterPosition());
-                item.setComplete(!item.isComplete());
-            }
+        box.setOnClickListener(v -> {
+            Exam item = (Exam) items.get(getBindingAdapterPosition());
+            item.complete = !item.complete;
         });
     }
     public CheckBox getCheckBox() { return box; }

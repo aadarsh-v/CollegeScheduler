@@ -10,7 +10,6 @@ import java.util.Locale;
 
 public class Assignment extends CourseItem {
     private String name;
-    private String course;
     private int year, month, day;
 
     public Assignment(String name, String course, int year, int month, int day) {

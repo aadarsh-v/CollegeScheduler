@@ -38,4 +38,8 @@
     <string name="minute">Minute</string>
     <string name="hour">Hour</string>
     <string name="name">Name</string>
+    <string name="incomplete">Incomplete</string>
+    <string name="complete">Complete</string>
+    <string name="date">Date</string>
+    <string name="reset">Reset</string>
 </resources>

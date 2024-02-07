@@ -10,7 +10,6 @@ import java.util.Locale;
 
 public class Exam extends CourseItem {
     private String name;
-    private Calendar calendar;
     private SimpleDateFormat examFormat;
     private String location;
 

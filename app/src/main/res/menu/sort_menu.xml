@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/date"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom|withText"
+        android:title="@string/date" />
+    <item
+        android:id="@+id/course"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom|withText"
+        android:title="@string/course" />
+    <item
+        android:id="@+id/complete"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom|withText"
+        android:title="@string/complete" />
+    <item
+        android:id="@+id/incomplete"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom|withText"
+        android:title="@string/incomplete" />
+    <item
+        android:id="@+id/reset"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom|withText"
+        android:title="@string/reset" />
+</menu>

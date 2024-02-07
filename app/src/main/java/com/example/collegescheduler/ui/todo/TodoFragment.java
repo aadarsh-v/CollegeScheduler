@@ -52,14 +52,7 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
             sortButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    items.sort(new Comparator<Item>() {
-                       public int compare(Item obj1, Item obj2) {
-                           return obj1.dueDate.compareTo(obj2.dueDate);
-                       }
-                    });
-                    layoutAdapter.notifyDataSetChanged();
-                    rV.setAdapter(layoutAdapter);
-                    System.out.println("Sorted");
+                    sortMenu(v);
                 }
             });
         return root;
@@ -100,6 +93,7 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
         layoutAdapter.getCourseFiltered();
         layoutAdapter.getComplete();
         layoutAdapter.getIncomplete();
+        layoutAdapter.getDateFiltered();
         layoutAdapter.notifyDataSetChanged();
     }
 
@@ -116,6 +110,33 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
                 return true;
             } else if (item.getItemId() == R.id.exam) {
                 openExamDialog();
+                return true;
+            } else {
+                return false;
+            }
+        });
+        popup.show();
+    }
+
+    private void sortMenu(View v) {
+        PopupMenu popup = new PopupMenu(getActivity(), v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.sort_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.date) {
+                layoutAdapter.sortItems("date");
+                return true;
+            } else if (item.getItemId() == R.id.course) {
+                layoutAdapter.sortItems("course");
+                return true;
+            } else if (item.getItemId() == R.id.complete) {
+                layoutAdapter.sortItems("complete");
+                return true;
+            } else if (item.getItemId() == R.id.incomplete) {
+                layoutAdapter.sortItems("incomplete");
+                return true;
+            } else if (item.getItemId() == R.id.reset) {
+                layoutAdapter.sortItems("unsorted");
                 return true;
             } else {
                 return false;

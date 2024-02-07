@@ -35,14 +35,15 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
     FragmentActivity activity;
-    List<Item> items;
-    List<Item> courseFiltered, complete, incomplete;
+    List<Item> items, fullItems;
+    List<Item> courseFiltered, complete, incomplete, dateFiltered;
 
     private final int ASSIGNMENT = 0, EXAM = 1, TODO = 2;
 
     public ItemAdapter(Context context, FragmentActivity activity, List<Item> items) {
         this.context = context;
         this.activity = activity;
+        this.fullItems = items;
         this.items = items;
     }
 
@@ -156,10 +157,12 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AlertDialog.Builder confirm_removal = new AlertDialog.Builder(context);
         confirm_removal.setTitle("Confirm Removal");
         confirm_removal.setPositiveButton("Confirm", (dialog, item) -> {
-            items.remove(currentListItemIndex);
+            int idx = fullItems.indexOf(items.get(currentListItemIndex));
+            fullItems.remove(idx);
             getCourseFiltered();
             getComplete();
             getIncomplete();
+            getDateFiltered();
             notifyDataSetChanged();
         });
         confirm_removal.setNegativeButton("Back", (dialog, item) -> { });
@@ -170,7 +173,8 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AlertDialog.Builder confirm_removal = new AlertDialog.Builder(context);
         confirm_removal.setTitle("Confirm Edit");
         confirm_removal.setPositiveButton("Confirm", (dialog, item) -> {
-            TodoFragment.items.set(currentListItemIndex, new Todo(task.getText().toString(),
+            int idx = fullItems.indexOf(items.get(currentListItemIndex));
+            fullItems.set(idx, new Todo(task.getText().toString(),
                     Integer.parseInt(year.getText().toString()),
                     Integer.parseInt(month.getText().toString()),
                     Integer.parseInt(day.getText().toString())
@@ -178,6 +182,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             getCourseFiltered();
             getComplete();
             getIncomplete();
+            getDateFiltered();
 
             notifyDataSetChanged();
         });
@@ -190,7 +195,8 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AlertDialog.Builder confirm_removal = new AlertDialog.Builder(context);
         confirm_removal.setTitle("Confirm Edit");
         confirm_removal.setPositiveButton("Confirm", (dialog, item) -> {
-            TodoFragment.items.set(currentListItemIndex, new Assignment(name.getText().toString(),
+            int idx = fullItems.indexOf(items.get(currentListItemIndex));
+            fullItems.set(idx, new Assignment(name.getText().toString(),
                     course.getText().toString(),
                     Integer.parseInt(year.getText().toString()),
                     Integer.parseInt(month.getText().toString()),
@@ -199,6 +205,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             getCourseFiltered();
             getComplete();
             getIncomplete();
+            getDateFiltered();
 
             notifyDataSetChanged();
         });
@@ -211,7 +218,8 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AlertDialog.Builder confirm_removal = new AlertDialog.Builder(context);
         confirm_removal.setTitle("Confirm Edit");
         confirm_removal.setPositiveButton("Confirm", (dialog, item) -> {
-            TodoFragment.items.set(currentListItemIndex, new Exam(name.getText().toString(),
+            int idx = fullItems.indexOf(items.get(currentListItemIndex));
+            fullItems.set(idx, new Exam(name.getText().toString(),
                     course.getText().toString(),
                     location.getText().toString(),
                     Integer.parseInt(year.getText().toString()),
@@ -223,6 +231,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             getCourseFiltered();
             getComplete();
             getIncomplete();
+            getDateFiltered();
 
             notifyDataSetChanged();
         });
@@ -235,7 +244,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
 
-        Todo item = (Todo) TodoFragment.items.get(currentListItemIndex);
+        Todo item = (Todo) items.get(currentListItemIndex);
 
         View view = inflater.inflate(R.layout.todo_add, null);
         EditText task = view.findViewById(R.id.taskInputDialog);
@@ -262,7 +271,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
 
-        Assignment item = (Assignment) TodoFragment.items.get(currentListItemIndex);
+        Assignment item = (Assignment) items.get(currentListItemIndex);
 
         View view = inflater.inflate(R.layout.assignment_add, null);
         EditText name = view.findViewById(R.id.nameInputDialog);
@@ -291,7 +300,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
 
-        Exam item = (Exam) TodoFragment.items.get(currentListItemIndex);
+        Exam item = (Exam) items.get(currentListItemIndex);
 
         View view = inflater.inflate(R.layout.exam_add, null);
         EditText name = view.findViewById(R.id.nameInputDialog);
@@ -328,7 +337,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
 
-        Todo item = (Todo) TodoFragment.items.get(currentListItemIndex);
+        Todo item = (Todo) items.get(currentListItemIndex);
 
         View view = inflater.inflate(R.layout.todo_details, null);
         TextView task = view.findViewById(R.id.task);
@@ -348,7 +357,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
 
-        Assignment item = (Assignment) TodoFragment.items.get(currentListItemIndex);
+        Assignment item = (Assignment) items.get(currentListItemIndex);
 
         View view = inflater.inflate(R.layout.assignment_details, null);
         TextView name = view.findViewById(R.id.name);
@@ -370,7 +379,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
 
-        Exam item = (Exam) TodoFragment.items.get(currentListItemIndex);
+        Exam item = (Exam) items.get(currentListItemIndex);
 
         View view = inflater.inflate(R.layout.exam_details, null);
         TextView name = view.findViewById(R.id.name);
@@ -398,7 +407,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         inflater.inflate(R.menu.item_menu, popup.getMenu());
         popup.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.view_details) {
-                Item cell = TodoFragment.items.get(currentListItemIndex);
+                Item cell = items.get(currentListItemIndex);
                 if (cell instanceof Todo) {
                     todoDetailsDialogue();
                 } else if (cell instanceof Assignment) {
@@ -410,7 +419,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
                 return true;
             } else if (item.getItemId() == R.id.edit_details) {
-                Item cell = TodoFragment.items.get(currentListItemIndex);
+                Item cell = items.get(currentListItemIndex);
                 if (cell instanceof Todo) {
                     todoEditButtonDialog();
                 } else if (cell instanceof Assignment) {
@@ -433,7 +442,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public void getCourseFiltered() {
         List<CourseItem> cf = new ArrayList<CourseItem>();
-        for (Item item : items) {
+        for (Item item : fullItems) {
             if (item instanceof Todo) {
                 continue;
             }
@@ -452,7 +461,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public void getComplete() {
         List<Item> c = new ArrayList<Item>();
-        for (Item item : items) {
+        for (Item item : fullItems) {
             if (item.complete) { c.add(item); }
         }
         complete = c;
@@ -460,10 +469,36 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public void getIncomplete() {
         List<Item> ic = new ArrayList<Item>();
-        for (Item item : items) {
+        for (Item item : fullItems) {
             if (!item.complete) { ic.add(item); }
         }
         incomplete = ic;
+    }
+
+    public void getDateFiltered() {
+        List<Item> df = new ArrayList<Item>();
+        for (Item item : fullItems) {
+            df.add(item);
+        }
+        df.sort(Comparator.comparing(obj -> obj.dueDate));
+        dateFiltered = df;
+    }
+
+    public void sortItems(String s) {
+        if (s == "date") {
+            this.items = dateFiltered;
+        } else if (s == "course") {
+            this.items = courseFiltered;
+        } else if (s == "complete") {
+            notifyDataSetChanged();
+            this.items = complete;
+        } else if (s == "incomplete") {
+            notifyDataSetChanged();
+            this.items = incomplete;
+        } else if (s == "unsorted") {
+            this.items = fullItems;
+        }
+        notifyDataSetChanged();
     }
 
 }

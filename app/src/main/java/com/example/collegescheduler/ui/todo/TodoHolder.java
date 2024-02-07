@@ -27,7 +27,7 @@ public class TodoHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 Todo item = (Todo) items.get(getBindingAdapterPosition());
-                item.setComplete(!item.isComplete());
+                item.complete = !item.complete;
             }
         });
     }
