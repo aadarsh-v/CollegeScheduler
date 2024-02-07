@@ -299,8 +299,16 @@
             tools:layout_editor_absoluteY="0dp"
             android:gravity="center_horizontal">
 
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:ems="10"
+                android:text="@string/start" />
+
             <LinearLayout
-                android:layout_width="135dp"
+                android:layout_width="100dp"
                 android:layout_height="48dp"
                 android:orientation="horizontal"
                 tools:layout_editor_absoluteX="0dp"
@@ -316,7 +324,7 @@
                     android:text="@string/hour" />
 
                 <EditText
-                    android:id="@+id/hourInput"
+                    android:id="@+id/startHourInput"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:ems="10"
@@ -326,7 +334,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="135dp"
+                android:layout_width="100dp"
                 android:layout_height="48dp"
                 android:orientation="horizontal"
                 tools:layout_editor_absoluteX="0dp"
@@ -342,7 +350,76 @@
                     android:text="@string/minute" />
 
                 <EditText
-                    android:id="@+id/minuteInput"
+                    android:id="@+id/startMinuteInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:layout_marginStart="5dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="287dp"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:ems="10"
+                android:text="@string/end" />
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical"
+                    android:inputType="text"
+                    android:ems="10"
+                    android:text="@string/hour" />
+
+                <EditText
+                    android:id="@+id/endHourInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"  />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical"
+                    android:inputType="text"
+                    android:ems="10"
+                    android:text="@string/minute" />
+
+                <EditText
+                    android:id="@+id/endMinuteInput"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:ems="10"
