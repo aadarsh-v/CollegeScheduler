@@ -45,7 +45,7 @@ public class ExamAddDialog extends AppCompatDialogFragment {
         EditText hour = view.findViewById(R.id.hourInput);
         hour.setFilters(new InputFilter[]{ new MinMaxFilter(1, 24)});
         EditText min = view.findViewById(R.id.minuteInput);
-        min.setFilters(new InputFilter[]{ new MinMaxFilter(1, 60)});
+        min.setFilters(new InputFilter[]{ new MinMaxFilter(0, 60)});
 
         builder.setView(view).setTitle("Add Exam").setNegativeButton("Back",
                 (dialog, which) -> {
