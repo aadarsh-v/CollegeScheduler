@@ -1,5 +1,6 @@
 package com.example.collegescheduler.ui.todo;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -28,7 +29,8 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
 
     private FragmentTodoBinding binding;
     public static ArrayList<Item> items = new ArrayList<Item>();
-    public ItemAdapter layoutAdapter;
+    @SuppressLint("StaticFieldLeak")
+    public static ItemAdapter layoutAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,13 +50,13 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
             v.setSelected(true);
         });
 
-        Button sortButton=(Button)root.findViewById(R.id.sortButtonToDo);
-            sortButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    sortMenu(v);
-                }
-            });
+        Button sortButton = (Button)root.findViewById(R.id.sortButtonToDo);
+        sortButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortMenu(v);
+            }
+        });
         return root;
     }
 

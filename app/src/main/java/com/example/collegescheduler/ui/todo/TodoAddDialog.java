@@ -53,9 +53,9 @@ public class TodoAddDialog extends AppCompatDialogFragment {
                         Integer.parseInt(day.getText().toString())
                 );
                 TodoFragment.items.add(newTodo);
-                if (TodoFragment.items != TodoFragment.allItems) {
-                    TodoFragment.allItems.add(newTodo);
-                }
+//                if (TodoFragment.items != TodoFragment.allItems) {
+//                    TodoFragment.allItems.add(newTodo);
+//                }
 
 
                 ButtonDialogListener listener = (ButtonDialogListener) targetFragment;

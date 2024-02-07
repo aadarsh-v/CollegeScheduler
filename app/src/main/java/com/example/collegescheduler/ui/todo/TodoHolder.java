@@ -1,6 +1,6 @@
 package com.example.collegescheduler.ui.todo;
 
-import static com.example.collegescheduler.ui.todo.TodoFragment.items;
+import static com.example.collegescheduler.ui.todo.TodoFragment.layoutAdapter;
 
 import android.view.View;
 import android.widget.CheckBox;
@@ -26,7 +26,7 @@ public class TodoHolder extends RecyclerView.ViewHolder {
         box.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Todo item = (Todo) items.get(getBindingAdapterPosition());
+                Todo item = (Todo) layoutAdapter.getItems().get(getBindingAdapterPosition());
                 item.complete = !item.complete;
             }
         });
