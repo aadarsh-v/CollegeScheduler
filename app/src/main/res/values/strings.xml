@@ -28,11 +28,14 @@
     <string name="repeatDays">Days Repeated ex M,TU,W,T,F</string>
     <string name="professor">Professor</string>
     <string name="section">Section</string>
-    <string name="location">Building Name\n</string>
+    <string name="location">Location</string>
     <string name="room_number">Room #</string>
     <string name="view_details">Details</string>
     <string name="edit_details">Edit</string>
     <string name="remove">Remove</string>
     <string name="assignment">Assignment</string>
     <string name="exam">Exam</string>
+    <string name="minute">Minute</string>
+    <string name="hour">Hour</string>
+    <string name="name">Name</string>
 </resources>

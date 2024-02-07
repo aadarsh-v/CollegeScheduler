@@ -22,12 +22,12 @@ android:layout_height="match_parent">
         android:gravity="center_horizontal">
 
         <TextView
-            android:layout_width="70dp"
+            android:layout_width="50dp"
             android:layout_height="48dp"
             android:gravity="center_vertical"
             android:inputType="text"
             android:ems="10"
-            android:text="@string/task" />
+            android:text="@string/name" />
 
         <EditText
             android:id="@+id/nameInputDialog"
@@ -77,75 +77,163 @@ android:layout_height="match_parent">
         tools:layout_editor_absoluteY="0dp"
         android:gravity="center_horizontal">
 
-        <TextView
-            android:layout_width="50dp"
+        <LinearLayout
+            android:layout_width="80dp"
             android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:inputType="text"
-            android:ems="10"
-            android:text="@string/day" />
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:gravity="center_horizontal">
 
-        <EditText
-            android:id="@+id/dayInput"
-            android:layout_width="match_parent"
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:ems="10"
+                android:text="@string/day" />
+
+            <EditText
+                android:id="@+id/dayInput"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="80dp"
             android:layout_height="48dp"
-            android:ems="10"
-            android:inputType="number"
-            android:layout_marginStart="10dp" />
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:gravity="center_horizontal">
 
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:ems="10"
+                android:text="@string/month" />
+
+            <EditText
+                android:id="@+id/monthInput"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:ems="10"
+                android:text="@string/year" />
+
+            <EditText
+                android:id="@+id/yearInput"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_marginStart="5dp" />
+
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="287dp"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        android:gravity="center_horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="287dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        tools:layout_editor_absoluteX="0dp"-->
+<!--        tools:layout_editor_absoluteY="0dp"-->
+<!--        android:gravity="center_horizontal">-->
 
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:inputType="text"
-            android:ems="10"
-            android:text="@string/month" />
+<!--        <TextView-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:inputType="text"-->
+<!--            android:ems="10"-->
+<!--            android:text="@string/day" />-->
 
-        <EditText
-            android:id="@+id/monthInput"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:inputType="number"
-            android:layout_marginStart="10dp" />
+<!--        <EditText-->
+<!--            android:id="@+id/dayInput"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="number"-->
+<!--            android:layout_marginStart="10dp" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
-    <LinearLayout
-        android:layout_width="287dp"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        android:gravity="center_horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="287dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        tools:layout_editor_absoluteX="0dp"-->
+<!--        tools:layout_editor_absoluteY="0dp"-->
+<!--        android:gravity="center_horizontal">-->
 
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:inputType="text"
-            android:ems="10"
-            android:text="@string/year" />
+<!--        <TextView-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:inputType="text"-->
+<!--            android:ems="10"-->
+<!--            android:text="@string/month" />-->
 
-        <EditText
-            android:id="@+id/yearInput"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:inputType="number"
-            android:layout_marginStart="10dp" />
+<!--        <EditText-->
+<!--            android:id="@+id/monthInput"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="number"-->
+<!--            android:layout_marginStart="10dp" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="287dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        tools:layout_editor_absoluteX="0dp"-->
+<!--        tools:layout_editor_absoluteY="0dp"-->
+<!--        android:gravity="center_horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:inputType="text"-->
+<!--            android:ems="10"-->
+<!--            android:text="@string/year" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/yearInput"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="number"-->
+<!--            android:layout_marginStart="10dp" />-->
+
+<!--    </LinearLayout>-->
 
 
 </LinearLayout>

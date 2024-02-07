@@ -27,11 +27,12 @@ import com.example.collegescheduler.ui.ItemAdapter;
 import com.example.collegescheduler.ui.assignments.Assignment;
 import com.example.collegescheduler.ui.assignments.AssignmentAddDialog;
 import com.example.collegescheduler.ui.exams.Exam;
+import com.example.collegescheduler.ui.exams.ExamAddDialog;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialogListener, AssignmentAddDialog.ButtonDialogListener {
+public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialogListener, AssignmentAddDialog.ButtonDialogListener, ExamAddDialog.ButtonDialogListener {
 
     private FragmentTodoBinding binding;
     public static ArrayList<Item> items = new ArrayList<Item>();
@@ -84,6 +85,12 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
         dia.show(getParentFragmentManager(), "Add New Task Dialog");
     }
 
+    public void openExamDialog() {
+        ExamAddDialog dia = new ExamAddDialog();
+        dia.setTargetFragment(TodoFragment.this);
+        dia.show(getParentFragmentManager(), "Add New Task Dialog");
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -113,6 +120,7 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
                 openAssignmentDialog();
                 return true;
             } else if (item.getItemId() == R.id.exam) {
+                openExamDialog();
                 return true;
             } else {
                 return false;

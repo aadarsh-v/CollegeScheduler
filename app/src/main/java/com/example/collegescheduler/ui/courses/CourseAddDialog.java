@@ -33,25 +33,23 @@ public class CourseAddDialog extends AppCompatDialogFragment {
         EditText location = view.findViewById(R.id.location);
         EditText room = view.findViewById(R.id.room_number);
         date = new GregorianCalendar();
-/*
-        builder.setView(view).setTitle("Add Course").setNegativeButton("Back",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                }).setPositiveButton("Done", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //CoursesFragment.courses.add(new Course(course.getText().toString(), Integer.parseInt(time.getText().toString()), repeatday.getText().toString(),
-                //        professor.getText().toString(), section.getText().toString(), location.getText().toString(),
-                //        room.getText().toString())
-                //);
-
-            }
-        });
-
- */
+//        builder.setView(view).setTitle("Add Course").setNegativeButton("Back",
+//                new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                }).setPositiveButton("Done", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                CoursesFragment.courses.add(new Course(course.getText().toString(), Integer.parseInt(time.getText().toString()), repeatday.getText().toString(),
+//                        professor.getText().toString(), section.getText().toString(), location.getText().toString(),
+//                        room.getText().toString())
+//                );
+//
+//            }
+//        });
         return builder.create();
 
 
