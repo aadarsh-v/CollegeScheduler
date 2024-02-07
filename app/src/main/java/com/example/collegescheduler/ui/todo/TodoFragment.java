@@ -29,6 +29,7 @@ import com.example.collegescheduler.ui.assignments.AssignmentAddDialog;
 import com.example.collegescheduler.ui.exams.Exam;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialogListener, AssignmentAddDialog.ButtonDialogListener {
 
@@ -54,6 +55,20 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
             v.setSelected(true);
         });
 
+        Button sortButton=(Button)root.findViewById(R.id.sortButtonToDo);
+            sortButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    items.sort(new Comparator<Item>() {
+                       public int compare(Item obj1, Item obj2) {
+                           return obj1.dueDate.compareTo(obj2.dueDate);
+                       }
+                    });
+                    layoutAdapter.notifyDataSetChanged();
+                    rV.setAdapter(layoutAdapter);
+                    System.out.println("Sorted");
+                }
+            });
         return root;
     }
 

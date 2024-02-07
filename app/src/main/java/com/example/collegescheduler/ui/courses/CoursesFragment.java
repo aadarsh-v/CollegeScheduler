@@ -14,15 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.collegescheduler.R;
 import com.example.collegescheduler.databinding.FragmentCoursesBinding;
+import com.example.collegescheduler.ui.Item;
 import com.example.collegescheduler.ui.ItemAdapter;
 import com.example.collegescheduler.ui.todo.TodoAddDialog;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CoursesFragment extends Fragment {
 
     private FragmentCoursesBinding binding;
-    public static ArrayList<Object> courses = new ArrayList<Object>();
+    public static ArrayList<Item> courses = new ArrayList<Item>();
     public ItemAdapter layoutAdapter = new ItemAdapter(getContext(), getActivity(), courses);
 
     public View onCreateView(@NonNull LayoutInflater inflater,
