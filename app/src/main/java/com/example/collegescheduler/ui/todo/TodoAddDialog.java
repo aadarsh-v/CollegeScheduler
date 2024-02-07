@@ -52,6 +52,7 @@ public class TodoAddDialog extends AppCompatDialogFragment {
                         Integer.parseInt(month.getText().toString()),
                         Integer.parseInt(day.getText().toString())
                 ));
+
                 ButtonDialogListener listener = (ButtonDialogListener) targetFragment;
                 listener.onFinishEditDialog("test");
             }

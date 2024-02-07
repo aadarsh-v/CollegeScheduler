@@ -1,25 +1,24 @@
 package com.example.collegescheduler.ui.exams;
 
-import com.example.collegescheduler.ui.Item;
+import com.example.collegescheduler.ui.items.CourseItem;
+import com.example.collegescheduler.ui.items.Item;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-public class Exam extends Item {
+public class Exam extends CourseItem {
     private String name;
-    private String course;
     private Calendar calendar;
     private SimpleDateFormat examFormat;
     private String location;
-    private boolean complete;
 
     private int day, month, year, hours, min;
 
     public Exam(String name, String course, String location, int year, int month, int day_of_month, int hours, int minutes) {
         this.name = name;
-        this.course = course;
+        super.course = course;
         this.location = location;
         super.dueDate = new GregorianCalendar();
         super.dueDate.set(Calendar.YEAR, year);
@@ -36,7 +35,7 @@ public class Exam extends Item {
     }
 
     public String getName() { return this.name; }
-    public String getCourse() { return this.course; }
+    public String getCourse() { return super.course; }
     // public Calendar getCalendar() { return super.dueDate; }
     public String getReadableDate() {
         examFormat = new SimpleDateFormat("dd/MM, yyyy");
@@ -63,11 +62,11 @@ public class Exam extends Item {
     public String getLocation() { return this.location; }
 
     public void setName(String name) { this.name = name; }
-    public void setCourse(String course) { this.course = course; }
+    public void setCourse(String course) { super.course = course; }
     public void setLocation(String location) {this.location = location; }
     public void setCalendar(Calendar calendar) { super.dueDate = calendar; }
-    public boolean isComplete() { return this.complete; }
-    public void setComplete(Boolean complete) { this.complete = complete; }
+    public boolean isComplete() { return super.complete; }
+    public void setComplete(Boolean complete) { super.complete = complete; }
 
     public String getYear() {
         return String.valueOf(year);

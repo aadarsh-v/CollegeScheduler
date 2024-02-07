@@ -2,13 +2,9 @@ package com.example.collegescheduler.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.text.InputFilter;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -24,12 +20,15 @@ import com.example.collegescheduler.ui.assignments.Assignment;
 import com.example.collegescheduler.ui.assignments.AssignmentHolder;
 import com.example.collegescheduler.ui.exams.Exam;
 import com.example.collegescheduler.ui.exams.ExamHolder;
+import com.example.collegescheduler.ui.items.CourseItem;
+import com.example.collegescheduler.ui.items.Item;
 import com.example.collegescheduler.ui.todo.Todo;
 import com.example.collegescheduler.ui.todo.TodoFragment;
 import com.example.collegescheduler.ui.todo.TodoHolder;
 
-import org.w3c.dom.Text;
-
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -37,6 +36,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     FragmentActivity activity;
     List<Item> items;
+    List<Item> courseFiltered, complete, incomplete;
 
     private final int ASSIGNMENT = 0, EXAM = 1, TODO = 2;
 
@@ -157,6 +157,9 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         confirm_removal.setTitle("Confirm Removal");
         confirm_removal.setPositiveButton("Confirm", (dialog, item) -> {
             items.remove(currentListItemIndex);
+            getCourseFiltered();
+            getComplete();
+            getIncomplete();
             notifyDataSetChanged();
         });
         confirm_removal.setNegativeButton("Back", (dialog, item) -> { });
@@ -172,6 +175,10 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     Integer.parseInt(month.getText().toString()),
                     Integer.parseInt(day.getText().toString())
             ));
+            getCourseFiltered();
+            getComplete();
+            getIncomplete();
+
             notifyDataSetChanged();
         });
         confirm_removal.setNegativeButton("Back", (dialog, item) -> { });
@@ -189,6 +196,10 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     Integer.parseInt(month.getText().toString()),
                     Integer.parseInt(day.getText().toString())
             ));
+            getCourseFiltered();
+            getComplete();
+            getIncomplete();
+
             notifyDataSetChanged();
         });
         confirm_removal.setNegativeButton("Back", (dialog, item) -> { });
@@ -209,6 +220,10 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     Integer.parseInt(hour.getText().toString()),
                     Integer.parseInt(min.getText().toString())
             ));
+            getCourseFiltered();
+            getComplete();
+            getIncomplete();
+
             notifyDataSetChanged();
         });
         confirm_removal.setNegativeButton("Back", (dialog, item) -> { });
@@ -414,6 +429,41 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         });
         popup.show();
+    }
+
+    public void getCourseFiltered() {
+        List<CourseItem> cf = new ArrayList<CourseItem>();
+        for (Item item : items) {
+            if (item instanceof Todo) {
+                continue;
+            }
+            cf.add((CourseItem) item);
+        }
+
+        cf.sort((obj1, obj2) -> {
+            return obj1.course.compareToIgnoreCase(obj2.course);
+        });
+
+        courseFiltered = new ArrayList<Item>();
+        for (CourseItem item : cf) {
+            courseFiltered.add((Item) item);
+        }
+    }
+
+    public void getComplete() {
+        List<Item> c = new ArrayList<Item>();
+        for (Item item : items) {
+            if (item.complete) { c.add(item); }
+        }
+        complete = c;
+    }
+
+    public void getIncomplete() {
+        List<Item> ic = new ArrayList<Item>();
+        for (Item item : items) {
+            if (!item.complete) { ic.add(item); }
+        }
+        incomplete = ic;
     }
 
 }

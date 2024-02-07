@@ -4,12 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-import com.example.collegescheduler.ui.Item;
+import com.example.collegescheduler.ui.items.Item;
 public class Todo extends Item {
 
     String task;
-    private boolean complete;
-
     private int year, month, day;
     public Todo(String task, int year, int month, int day) {
         super.dueDate = new GregorianCalendar();
@@ -52,8 +50,8 @@ public class Todo extends Item {
         this.task = task;
     }
 
-    public void setComplete(Boolean complete) { this.complete = complete; }
-    public Boolean isComplete() { return this.complete; }
+    public void setComplete(Boolean complete) { super.complete = complete; }
+    public Boolean isComplete() { return super.complete; }
 
     public String getYear() { return String.valueOf(this.year); }
     public String getMonth() { return String.valueOf(this.month); }

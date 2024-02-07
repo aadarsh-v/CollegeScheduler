@@ -1,14 +1,8 @@
 package com.example.collegescheduler.ui.todo;
 
-import android.app.Notification;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.ActionMode;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,11 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.collegescheduler.R;
 import com.example.collegescheduler.databinding.FragmentTodoBinding;
-import com.example.collegescheduler.ui.Item;
+import com.example.collegescheduler.ui.items.Item;
 import com.example.collegescheduler.ui.ItemAdapter;
-import com.example.collegescheduler.ui.assignments.Assignment;
 import com.example.collegescheduler.ui.assignments.AssignmentAddDialog;
-import com.example.collegescheduler.ui.exams.Exam;
 import com.example.collegescheduler.ui.exams.ExamAddDialog;
 
 import java.util.ArrayList;
@@ -105,6 +97,9 @@ public class TodoFragment extends Fragment implements TodoAddDialog.ButtonDialog
 
     @Override
     public void onFinishEditDialog(String inputText) {
+        layoutAdapter.getCourseFiltered();
+        layoutAdapter.getComplete();
+        layoutAdapter.getIncomplete();
         layoutAdapter.notifyDataSetChanged();
     }
 

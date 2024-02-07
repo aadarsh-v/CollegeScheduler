@@ -14,12 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.collegescheduler.R;
 import com.example.collegescheduler.databinding.FragmentCoursesBinding;
-import com.example.collegescheduler.ui.Item;
+import com.example.collegescheduler.ui.items.Item;
 import com.example.collegescheduler.ui.ItemAdapter;
 import com.example.collegescheduler.ui.todo.TodoAddDialog;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CoursesFragment extends Fragment {
 
